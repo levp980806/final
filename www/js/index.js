@@ -98,7 +98,7 @@ var firebaseConfig = {
     agregaBasedeDatos : function(){
         var db = firebase.firestore(); 
 
-            db.collection("Jugadores").doc("Player2").set({
+            db.collection("Jugadores").doc("Player3").set({
             id : document.getElementById("id").value,
             Nombre : document.getElementById("nombre").value,
             Dorsal : document.getElementById("dorsal").value,
