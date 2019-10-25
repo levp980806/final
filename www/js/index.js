@@ -99,13 +99,14 @@
     agregaBasedeDatos : function(){
         var db = firebase.firestore(); 
 
-        db.collection("Alumnos").add({
+        db.collection("Jugadores").add({
             id : document.getElementById("id").value,
             Nombre : document.getElementById("nombre").value,
-            Clase : document.getElementById("clase").value,
-            Semestre : document.getElementById("semestre").value,
-            Calificacion : document.getElementById("calificacion").value,
-            Aula : new firebase.firestore.GeoPoint(parseFloat(document.getElementById("lat").value), parseFloat(document.getElementById("long").value))
+            Dorsal : document.getElementById("dorsal").value,
+            Equipo : document.getElementById("equipo").value,
+            Posicion: document.getElementById("posicion").value,
+            /*Aula : new firebase.firestore.GeoPoint(parseFloat(document.getElementById("lat").value), parseFloat(document.getElementById("long").value))
+        */
         })
         .then(function(docRef) {
             console.log("Document written with ID: ", docRef.id);
@@ -123,16 +124,16 @@
     leerBasedeDatos : function(){
         var db = firebase.firestore();
 
-        db.collection("Alumnos").where("Nombre", "==", document.getElementById("nombre").value)
+        db.collection("Jugadores").where("Nombre", "==", document.getElementById("nombre").value)
         .get()
         .then(function(querySnapshot) {
             
             querySnapshot.forEach(function(doc) {
                 document.getElementById("id").value = doc.data().id;
                 document.getElementById("nombre").value = doc.data().Nombre;
-                document.getElementById("semestre").value = doc.data().Semestre;
-                document.getElementById("clase").value = doc.data().Clase;
-                document.getElementById("calificacion").value = doc.data().Calificacion;
+                document.getElementById("dorsal").value = doc.data().Dorsal;
+                document.getElementById("equipo").value = doc.data().Equipo;
+                document.getElementById("posicion").value = doc.data().Posicion;
                 document.getElementById("lat").value = doc.data().Aula.latitude;
                 document.getElementById("long").value = doc.data().Aula.longitude;
                 console.log(doc.id, " => ", doc.data());
