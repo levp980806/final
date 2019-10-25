@@ -98,13 +98,13 @@ var firebaseConfig = {
     agregaBasedeDatos : function(){
         var db = firebase.firestore(); 
 
-      //  db.collection("Jugadores").doc("Player").set({
-            db.collection("Jugadores").add({
+            db.collection("Jugadores").doc("Player2").set({
             id : document.getElementById("id").value,
             Nombre : document.getElementById("nombre").value,
             Dorsal : document.getElementById("dorsal").value,
             Equipo : document.getElementById("equipo").value,
             Posicion: document.getElementById("posicion").value,
+            Fecha: document.getElementById("fecha").value
             /*Aula : new firebase.firestore.GeoPoint(parseFloat(document.getElementById("lat").value), parseFloat(document.getElementById("long").value))
         */
         })
@@ -134,8 +134,9 @@ var firebaseConfig = {
                 document.getElementById("dorsal").value = doc.data().Dorsal;
                 document.getElementById("equipo").value = doc.data().Equipo;
                 document.getElementById("posicion").value = doc.data().Posicion;
-                document.getElementById("lat").value = doc.data().Aula.latitude;
-                document.getElementById("long").value = doc.data().Aula.longitude;
+                document.getElementById("fecha").value = doc.data().Fecha;
+              //  document.getElementById("lat").value = doc.data().Aula.latitude;
+              //  document.getElementById("long").value = doc.data().Aula.longitude;
                 console.log(doc.id, " => ", doc.data());
             });
         })
@@ -181,6 +182,7 @@ var firebaseConfig = {
                         Dorsal : document.getElementById("dorsal").value,
                         Equipo : document.getElementById("equipo").value,
                         Posicion: document.getElementById("posicion").value,
+                        Fecha: document.getElementById("fecha").value
                        /* Aula : new firebase.firestore.GeoPoint(parseFloat(document.getElementById("lat").value), parseFloat(document.getElementById("long").value)) */
                          
 
@@ -191,6 +193,8 @@ var firebaseConfig = {
             })     
         
     },
+
+    
   
     dispositivoListo: function(){
         navigator.geolocation.getCurrentPosition(app.pintaCoordenadas, app.errorAlSolicitarLocalizacion);
@@ -253,6 +257,7 @@ var firebaseConfig = {
  
  
 }
+
 //Menu------------------------------------------------
 function Registro(){
     document.getElementById("menu").className='hide';
@@ -300,8 +305,8 @@ function limpiar(){
     document.getElementById("dorsal").value = "";
     document.getElementById("equipo").value = "";
     document.getElementById("posicion").value = "";
-    document.getElementById("lat").value = "";
-    document.getElementById("long").value = "";
+    document.getElementById("fecha").value = "";
+    //document.getElementById("long").value = "";
     
 }
 
