@@ -1,6 +1,5 @@
-
-  // Your web app's Firebase configuration
-  var firebaseConfig = {
+// Your web app's Firebase configuration
+var firebaseConfig = {
     apiKey: "AIzaSyDdL80bdsl_fmKKms_-PQHztJusFbB6Iao",
     authDomain: "base-f8e0c.firebaseapp.com",
     databaseURL: "https://base-f8e0c.firebaseio.com",
@@ -99,7 +98,8 @@
     agregaBasedeDatos : function(){
         var db = firebase.firestore(); 
 
-        db.collection("Jugadores").add({
+      //  db.collection("Jugadores").doc("Player").set({
+            db.collection("Jugadores").add({
             id : document.getElementById("id").value,
             Nombre : document.getElementById("nombre").value,
             Dorsal : document.getElementById("dorsal").value,
@@ -147,7 +147,7 @@
     borrarBasedeDatos: function(){
         var db = firebase.firestore();
 
-        db.collection("Alumnos").where("Nombre", "==", document.getElementById("nombre").value)
+        db.collection("Jugadores").where("Nombre", "==", document.getElementById("nombre").value)
         .get()
             .then(function(querySnapshot) {
             
@@ -171,22 +171,22 @@
     actualizaBasedeDatos : function(){
         var db = firebase.firestore();
         
-        db.collection("Alumnos").where("Nombre", "==", document.getElementById("nombre").value)
+        db.collection("Jugadores").where("Nombre", "==", document.getElementById("nombre").value)
         .get()
             .then(function(querySnapshot) {
                 querySnapshot.forEach(function(doc) {
                     doc.ref.update({
                         id : document.getElementById("id").value,
                         Nombre : document.getElementById("nombre").value,
-                        Clase : document.getElementById("clase").value,
-                        Semestre : document.getElementById("semestre").value,
-                        Calificacion : document.getElementById("calificacion").value,
-                        Aula : new firebase.firestore.GeoPoint(parseFloat(document.getElementById("lat").value), parseFloat(document.getElementById("long").value)) 
+                        Dorsal : document.getElementById("dorsal").value,
+                        Equipo : document.getElementById("equipo").value,
+                        Posicion: document.getElementById("posicion").value,
+                       /* Aula : new firebase.firestore.GeoPoint(parseFloat(document.getElementById("lat").value), parseFloat(document.getElementById("long").value)) */
                          
 
 
                     });
-                    alert("Objeto actualizao en base de datos"); 
+                    alert("Objeto actualizado en base de datos"); 
                 })   
             })     
         
@@ -297,9 +297,9 @@ function actualizar(){
 function limpiar(){
     document.getElementById("id").value = "";
     document.getElementById("nombre").value = "";
-    document.getElementById("semestre").value = "";
-    document.getElementById("clase").value = "";
-    document.getElementById("calificacion").value = "";
+    document.getElementById("dorsal").value = "";
+    document.getElementById("equipo").value = "";
+    document.getElementById("posicion").value = "";
     document.getElementById("lat").value = "";
     document.getElementById("long").value = "";
     
